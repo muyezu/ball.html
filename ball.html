@@ -1,0 +1,67 @@
+<html>
+<head>
+<script src="p5.min.js"></script>
+<style>
+
+body {
+overflow: hidden;
+padding: 20;
+margin: 20;
+}
+
+</style>
+</head>
+<body>
+
+<h1 id="x"></h1>
+<h1 id="y"></h1>
+
+<script>
+
+var speed = 10;
+var w = window.innerWidth;
+var h = window.innerHeight;
+var ball = new ball(); //im going to create a global object
+
+
+function setup() {
+createCanvas(w,h);
+}
+
+function draw() {
+background(255);
+ball.show();
+ball.move();
+}
+
+function ball() {
+this.x = 100;
+this.y = 100;
+this.show = function() {
+fill(color('red'));
+ellipse(this.x, this.y, 50, 50);
+document.getElementById('x').innerHTML = "this is the X coordinate " + this.x;
+document.getElementById('y').innerHTML = "this is the Y coordinate " + this.y;
+}
+this.move = function() {
+if ((keyIsDown(65)) && (this.x > 0)) {
+this.x -= speed;
+}
+
+if ((keyIsDown(68)) && (this.x < w - 100)) {
+this.x += speed;
+}
+
+if ((keyIsDown(87)) && (this.y > 0)) {
+this.y -= speed;
+}
+
+if ((keyIsDown(83)) && (this.y < h - 100)) {
+this.y += speed;
+}
+}
+}
+
+</script>
+</body>
+</html>
